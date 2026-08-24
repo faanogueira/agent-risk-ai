@@ -178,18 +178,19 @@ Todas as métricas abaixo foram calculadas no **conjunto de holdout (6.830 clien
 
 ### 5. Top 10 Fatores de Risco Auditáveis (Importância Média $|\text{SHAP}|$)
 
-| Ranking | Feature | Média $|\text{SHAP}|$ | Racional de Risco |
+| Ranking | Feature | Média $\|\text{SHAP}\|$ | Racional de Risco |
 |:---:|---|:---:|---|
-| **1º** | `credit_score` | **3,3044** | Fator dominante: score histórico de bureaus de crédito. |
-| **2º** | `credit_limit_used(%)` | **1,8558** | Comprometimento do limite rotativo concedido. |
-| **3º** | `credit_utilization_frac` | **0,6122** | Fração decimal de utilização de limite de crédito. |
-| **4º** | `risk_flags_sum` | **0,1516** | Soma ponderada de sinalizadores de risco pré-existentes. |
-| **5º** | `prev_defaults` | **0,1167** | Quantidade de ocorrências de inadimplência prévia. |
-| **6º** | `yearly_debt_payments` | **0,0445** | Carga financeira anual comprometida com pagamentos. |
-| **7º** | `no_of_days_employed` | **0,0382** | Estabilidade empregatícia e tempo no emprego atual. |
-| **8º** | `gender_F` | **0,0339** | Categoria demográfica monitorada para auditoria. |
-| **9º** | `utilization_x_prev_defaults` | **0,0266** | Interação: alta utilização combinada a default passado. |
-| **10º** | `occupation_type_Unknown` | **0,0240** | Flag de ocupação não informada / aposentado. |
+| 1º | credit_score | 3,3044 | Fator dominante: score histórico de bureaus de crédito. |
+| 2º | credit_limit_used(%) | 1,8558 | Comprometimento do limite rotativo concedido. |
+| 3º | credit_utilization_frac | 0,6122 | Fração decimal de utilização de limite de crédito. |
+| 4º | risk_flags_sum | 0,1516 | Soma ponderada de sinalizadores de risco pré-existentes. |
+| 5º | prev_defaults | 0,1167 | Quantidade de ocorrências de inadimplência prévia. |
+| 6º | yearly_debt_payments | 0,0445 | Carga financeira anual comprometida com pagamentos. |
+| 7º | no_of_days_employed | 0,0382 | Estabilidade empregatícia e tempo no emprego atual. |
+| 8º | gender_F | 0,0339 | Categoria demográfica monitorada para auditoria. |
+| 9º | utilization_x_prev_defaults | 0,0266 | Interação: alta utilização combinada a default passado. |
+| 10º | occupation_type_Unknown | 0,0240 | Flag de ocupação não informada / aposentado. |
+
 
 📈 **Artefatos Visuais em [`reports/figures/`](reports/figures/):**
 * `roc_curve.png` — Curva ROC com baseline aleatório.
