@@ -243,16 +243,30 @@ Faixas de risco usadas pelo servidor: `MUITO_BAIXO` (<5%) · `BAIXO` (5–15%) �
 
 ---
 
-## 🚀 Como executar
+## 🌐 Interface Web Chat no Navegador (Streamlit)
 
-### 🌐 Opção 1: Interface Web Chat no Navegador (Recomendada)
-Para conversar com o modelo diretamente pelo navegador em uma interface conversacional completa com gráficos SHAP e simulador *what-if*:
+O projeto inclui uma interface web conversacional completa construída em **Streamlit** para demonstrações, testes rápidos e uso operacional por equipes de crédito e underwriting:
 
 ```bash
 make web
 # ou: streamlit run app.py
 ```
 Acesse no seu navegador: **`http://localhost:8501`**
+
+### ✨ Principais Recursos da Interface Web:
+* 💬 **Chat em Linguagem Natural:** Faça perguntas livres sobre clientes, simulações ou carteiras em português.
+* ⚡ **Ações Rápidas (Todas as 5 Faixas de Risco):** Carregue instantaneamente perfis representativos de cada faixa com 1 clique:
+  * 🟢 **1. Muito Baixo (<5%):** Cliente Prime (renda alta, score 910, uso de limite 10%).
+  * 🟢 **2. Baixo (5–15%):** Cliente Saudável (score 810, uso de limite 25%, 0 defaults).
+  * 🟡 **3. Moderado (15–35%):** Cliente Limítrofe (score 580, uso de limite 50%, sem atrasos).
+  * 🔴 **4. Alto (35–60%):** Cliente Alerta (score 580, uso de limite 50%, 1 default recente).
+  * ⛔ **5. Muito Alto (≥60%):** Cliente Crítico (score 544, uso de limite 73%, 2 inadimplências).
+* 🛠️ **Grade de Consultas Sugeridas:**
+  * 📊 **Ficha Técnica:** Exibe métricas de validação, ROC-AUC, PR-AUC e acurácia.
+  * 📁 **Carteira CSV:** Avalia carteiras inteiras com scoring vetorizado de **11.000 clientes em 0,7s**, calculando a **Perda Esperada (R$)** e exposição total.
+  * 📉 **Simulação *What-If*:** Simule reduções de limite (30%), quitação de dívidas ou aumento de score (+150 pontos).
+  * 🔬 **Auditoria SHAP:** Ranking e gráficos de barras com os maiores drivers de risco de crédito.
+* 💡 **Guias Expansíveis para Leigos:** Cada resposta contém uma legenda didática explicando o significado dos gráficos SHAP, deltas de probabilidade e provisão de perdas.
 
 ---
 
