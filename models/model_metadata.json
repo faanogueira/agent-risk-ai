@@ -1,0 +1,169 @@
+{
+  "model_version": "1.0.0",
+  "trained_at_utc": "2026-08-23T23:29:51.273906+00:00",
+  "training_seconds": 242.4,
+  "algorithm": "XGBoost (tuned via Optuna, 25 trials)",
+  "target": "credit_card_default",
+  "n_train_rows": 38698,
+  "n_holdout_rows": 6830,
+  "positive_rate_train": 0.08119282650266163,
+  "scale_pos_weight": 11.31635900700191,
+  "winsor_limits": {
+    "net_yearly_income": 742027.4832999996,
+    "credit_limit": 173274.94979999974,
+    "yearly_debt_payments": 96483.5903999993
+  },
+  "cv_pr_auc_by_model": {
+    "logistic_regression": 0.9453638382062698,
+    "random_forest": 0.948373965114944,
+    "xgboost_tuned": 0.9545967265788304
+  },
+  "best_hyperparameters": {
+    "n_estimators": 500,
+    "max_depth": 4,
+    "learning_rate": 0.012097379927033842,
+    "subsample": 0.7243929286862649,
+    "colsample_bytree": 0.7300733288106989,
+    "min_child_weight": 8,
+    "gamma": 3.1877873567760657,
+    "reg_lambda": 3.53875886477924,
+    "reg_alpha": 0.0774211647399625
+  },
+  "holdout_metrics": {
+    "roc_auc": 0.9960343131976598,
+    "pr_auc": 0.962456817741845,
+    "f1_at_best_threshold": 0.8748768472901447,
+    "best_threshold": 0.8748342394828796,
+    "confusion_matrix": [
+      [
+        6259,
+        16
+      ],
+      [
+        111,
+        444
+      ]
+    ],
+    "confusion_matrix_labels": [
+      "true_negative",
+      "false_positive",
+      "false_negative",
+      "true_positive"
+    ]
+  },
+  "top_features_shap": [
+    {
+      "feature": "num__credit_score",
+      "mean_abs_shap": 3.3043739795684814
+    },
+    {
+      "feature": "num__credit_limit_used(%)",
+      "mean_abs_shap": 1.8557672500610352
+    },
+    {
+      "feature": "num__credit_utilization_frac",
+      "mean_abs_shap": 0.6121545433998108
+    },
+    {
+      "feature": "num__risk_flags_sum",
+      "mean_abs_shap": 0.15156814455986023
+    },
+    {
+      "feature": "num__prev_defaults",
+      "mean_abs_shap": 0.1166662871837616
+    },
+    {
+      "feature": "num__yearly_debt_payments",
+      "mean_abs_shap": 0.04453957453370094
+    },
+    {
+      "feature": "num__no_of_days_employed",
+      "mean_abs_shap": 0.03822709992527962
+    },
+    {
+      "feature": "cat__gender_F",
+      "mean_abs_shap": 0.03385787829756737
+    },
+    {
+      "feature": "num__utilization_x_prev_defaults",
+      "mean_abs_shap": 0.02664906345307827
+    },
+    {
+      "feature": "cat__occupation_type_Unknown",
+      "mean_abs_shap": 0.024016322568058968
+    },
+    {
+      "feature": "num__income_per_family_member",
+      "mean_abs_shap": 0.021243900060653687
+    },
+    {
+      "feature": "num__age",
+      "mean_abs_shap": 0.016186470165848732
+    },
+    {
+      "feature": "num__has_prev_default",
+      "mean_abs_shap": 0.015584643930196762
+    },
+    {
+      "feature": "num__is_retired_or_unemployed",
+      "mean_abs_shap": 0.014089434407651424
+    },
+    {
+      "feature": "num__employment_tenure_ratio",
+      "mean_abs_shap": 0.013593262992799282
+    }
+  ],
+  "feature_names_post_preprocessing": [
+    "num__age",
+    "num__no_of_children",
+    "num__net_yearly_income",
+    "num__no_of_days_employed",
+    "num__total_family_members",
+    "num__migrant_worker",
+    "num__yearly_debt_payments",
+    "num__credit_limit",
+    "num__credit_limit_used(%)",
+    "num__credit_score",
+    "num__prev_defaults",
+    "num__default_in_last_6months",
+    "num__is_retired_or_unemployed",
+    "num__debt_to_income_ratio",
+    "num__credit_limit_to_income_ratio",
+    "num__credit_utilization_frac",
+    "num__utilization_x_prev_defaults",
+    "num__income_per_family_member",
+    "num__has_children",
+    "num__employment_years",
+    "num__employment_tenure_ratio",
+    "num__has_prev_default",
+    "num__risk_flags_sum",
+    "num__log_net_yearly_income",
+    "num__log_credit_limit",
+    "num__log_yearly_debt_payments",
+    "cat__gender_F",
+    "cat__gender_M",
+    "cat__owns_car_N",
+    "cat__owns_car_Y",
+    "cat__owns_house_N",
+    "cat__owns_house_Y",
+    "cat__occupation_type_Accountants",
+    "cat__occupation_type_Cleaning staff",
+    "cat__occupation_type_Cooking staff",
+    "cat__occupation_type_Core staff",
+    "cat__occupation_type_Drivers",
+    "cat__occupation_type_HR staff",
+    "cat__occupation_type_High skill tech staff",
+    "cat__occupation_type_IT staff",
+    "cat__occupation_type_Laborers",
+    "cat__occupation_type_Low-skill Laborers",
+    "cat__occupation_type_Managers",
+    "cat__occupation_type_Medicine staff",
+    "cat__occupation_type_Private service staff",
+    "cat__occupation_type_Realty agents",
+    "cat__occupation_type_Sales staff",
+    "cat__occupation_type_Secretaries",
+    "cat__occupation_type_Security staff",
+    "cat__occupation_type_Unknown",
+    "cat__occupation_type_Waiters/barmen staff"
+  ]
+}

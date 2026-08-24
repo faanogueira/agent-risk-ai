@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "agent-risk-ai": {
+      "command": "python",
+      "args": ["-m", "mcp_server.server"],
+      "cwd": "/caminho/absoluto/para/agent-risk-ai",
+      "env": {
+        "PYTHONPATH": "/caminho/absoluto/para/agent-risk-ai"
+      }
+    }
+  }
+}
