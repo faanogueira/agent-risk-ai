@@ -5,6 +5,7 @@
 </div>
 
 <div align="center">
+  
 ![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)
 ![XGBoost](https://img.shields.io/badge/XGBoost-2.x-EB6A22?logo=xgboost&logoColor=white)
 ![scikit--learn](https://img.shields.io/badge/scikit--learn-1.5-F7931E?logo=scikitlearn&logoColor=white)
@@ -13,6 +14,7 @@
 ![MCP](https://img.shields.io/badge/Model%20Context%20Protocol-server-000000)
 ![Tests](https://img.shields.io/badge/tests-7%20passing-2ECC71)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey)
+
 </div>
 
 > **Agente de Risco IA**: Seu analista autônomo de inteligência e risco de crédito via MCP.
