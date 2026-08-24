@@ -62,9 +62,81 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# --- Perfis de Exemplo para Teste Rápido ------------------------------
+# --- Perfis de Exemplo para Teste Rápido (Todas as 5 Faixas de Risco) ---
 SAMPLE_PROFILES = {
-    "Cliente 1 — Alto Risco": {
+    "🟢 1. Muito Baixo (<5%) — Cliente Prime": {
+        "age": 45,
+        "gender": "M",
+        "owns_car": "Y",
+        "owns_house": "Y",
+        "no_of_children": 0.0,
+        "net_yearly_income": 350000.0,
+        "no_of_days_employed": 3800.0,
+        "occupation_type": "Managers",
+        "total_family_members": 2.0,
+        "migrant_worker": 0.0,
+        "yearly_debt_payments": 10000.0,
+        "credit_limit": 60000.0,
+        "credit_limit_used(%)": 10.0,
+        "credit_score": 910.0,
+        "prev_defaults": 0,
+        "default_in_last_6months": 0,
+    },
+    "🟢 2. Baixo (5–15%) — Cliente Saudável": {
+        "age": 38,
+        "gender": "F",
+        "owns_car": "Y",
+        "owns_house": "Y",
+        "no_of_children": 1.0,
+        "net_yearly_income": 200000.0,
+        "no_of_days_employed": 2400.0,
+        "occupation_type": "High skill tech staff",
+        "total_family_members": 3.0,
+        "migrant_worker": 0.0,
+        "yearly_debt_payments": 22000.0,
+        "credit_limit": 40000.0,
+        "credit_limit_used(%)": 25.0,
+        "credit_score": 810.0,
+        "prev_defaults": 0,
+        "default_in_last_6months": 0,
+    },
+    "🟡 3. Moderado (15–35%) — Cliente Limítrofe": {
+        "age": 35,
+        "gender": "M",
+        "owns_car": "N",
+        "owns_house": "Y",
+        "no_of_children": 0.0,
+        "net_yearly_income": 100000.0,
+        "no_of_days_employed": 1500.0,
+        "occupation_type": "Laborers",
+        "total_family_members": 2.0,
+        "migrant_worker": 0.0,
+        "yearly_debt_payments": 20000.0,
+        "credit_limit": 30000.0,
+        "credit_limit_used(%)": 50.0,
+        "credit_score": 580.0,
+        "prev_defaults": 0,
+        "default_in_last_6months": 0,
+    },
+    "🔴 4. Alto (35–60%) — Cliente Alerta": {
+        "age": 35,
+        "gender": "M",
+        "owns_car": "N",
+        "owns_house": "Y",
+        "no_of_children": 0.0,
+        "net_yearly_income": 100000.0,
+        "no_of_days_employed": 1500.0,
+        "occupation_type": "Laborers",
+        "total_family_members": 2.0,
+        "migrant_worker": 0.0,
+        "yearly_debt_payments": 20000.0,
+        "credit_limit": 30000.0,
+        "credit_limit_used(%)": 50.0,
+        "credit_score": 580.0,
+        "prev_defaults": 1,
+        "default_in_last_6months": 0,
+    },
+    "⛔ 5. Muito Alto (≥60%) — Cliente Crítico": {
         "age": 46,
         "gender": "F",
         "owns_car": "N",
@@ -81,42 +153,6 @@ SAMPLE_PROFILES = {
         "credit_score": 544.0,
         "prev_defaults": 2,
         "default_in_last_6months": 1,
-    },
-    "Cliente 2 — Baixo Risco (Excelente)": {
-        "age": 40,
-        "gender": "M",
-        "owns_car": "Y",
-        "owns_house": "Y",
-        "no_of_children": 0.0,
-        "net_yearly_income": 320000.0,
-        "no_of_days_employed": 3500.0,
-        "occupation_type": "Managers",
-        "total_family_members": 2.0,
-        "migrant_worker": 0.0,
-        "yearly_debt_payments": 12000.0,
-        "credit_limit": 60000.0,
-        "credit_limit_used(%)": 12.0,
-        "credit_score": 890.0,
-        "prev_defaults": 0,
-        "default_in_last_6months": 0,
-    },
-    "Cliente 3 — Risco Moderado / Limítrofe": {
-        "age": 32,
-        "gender": "F",
-        "owns_car": "N",
-        "owns_house": "Y",
-        "no_of_children": 1.0,
-        "net_yearly_income": 140000.0,
-        "no_of_days_employed": 1200.0,
-        "occupation_type": "Core staff",
-        "total_family_members": 3.0,
-        "migrant_worker": 0.0,
-        "yearly_debt_payments": 35000.0,
-        "credit_limit": 25000.0,
-        "credit_limit_used(%)": 55.0,
-        "credit_score": 670.0,
-        "prev_defaults": 0,
-        "default_in_last_6months": 0,
     },
 }
 
@@ -247,25 +283,32 @@ def parse_and_execute_tool(query: str, last_record: dict[str, Any] | None) -> di
 with st.sidebar:
     st.image("https://img.shields.io/badge/Agente%20de%20Risco%20IA-MCP%20Server-1E3A8A?style=for-the-badge&logo=probot&logoColor=white", use_container_width=True)
     st.markdown("### ⚡ Ações Rápidas")
-    st.write("Clique em um perfil para carregar a análise instantaneamente no chat:")
+    st.caption("Selecione um cliente para avaliar instantaneamente nas **5 faixas de risco**:")
     
     selected_sample = None
     for name in SAMPLE_PROFILES:
-        if st.button(f"👤 {name}", use_container_width=True):
+        if st.button(f"{name}", use_container_width=True):
             selected_sample = name
 
     st.divider()
     st.markdown("### 🛠️ Consultas Sugeridas")
+    st.caption("Ações rápidas de auditoria, carteira e simulação *What-If*:")
+    
     col1, col2 = st.columns(2)
     with col1:
-        if st.button("📊 Performance", use_container_width=True):
-            st.session_state["pending_prompt"] = "Qual a performance e métricas do modelo de crédito?"
+        if st.button("📊 Ficha Técnica", use_container_width=True):
+            st.session_state["pending_prompt"] = "Qual a performance e métricas de validação do modelo?"
+        if st.button("📉 Limite a 30%", use_container_width=True):
+            st.session_state["pending_prompt"] = "E se o limite de crédito usado for reduzido para 30%?"
+        if st.button("💰 Quitar Dívida", use_container_width=True):
+            st.session_state["pending_prompt"] = "E se a dívida anual for reduzida para R$ 5.000?"
     with col2:
-        if st.button("📁 Portfólio CSV", use_container_width=True):
+        if st.button("📁 Carteira CSV", use_container_width=True):
             st.session_state["pending_prompt"] = "Gere um resumo de risco e perda esperada da carteira de teste."
-
-    if st.button("📉 Simulação What-If (Limite a 30%)", use_container_width=True):
-        st.session_state["pending_prompt"] = "E se o limite de crédito usado for reduzido para 30%?"
+        if st.button("📈 Score para 780", use_container_width=True):
+            st.session_state["pending_prompt"] = "E se o score de crédito subir para 780?"
+        if st.button("🔬 Fatores SHAP", use_container_width=True):
+            st.session_state["pending_prompt"] = "Quais são os 10 principais fatores de risco avaliados pelo modelo?"
 
     st.divider()
     st.markdown("### ℹ️ Sobre o Agente")
@@ -297,7 +340,7 @@ if "messages" not in st.session_state:
     ]
 
 if "last_record" not in st.session_state:
-    st.session_state["last_record"] = SAMPLE_PROFILES["Cliente 1 — Alto Risco"]
+    st.session_state["last_record"] = SAMPLE_PROFILES["🔴 4. Alto (35–60%) — Cliente Alerta"]
 
 
 # --- Cabeçalho Principal -----------------------------------------------

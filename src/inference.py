@@ -130,7 +130,38 @@ def explain_one(record: dict[str, Any], top_k: int = 8) -> dict[str, Any]:
 
 
 def score_batch(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    return [predict_one(r) for r in records]
+    if not records:
+        return []
+    artifacts = load_artifacts()
+    model = artifacts["model"]
+    threshold = artifacts["metadata"]["holdout_metrics"]["best_threshold"]
+    winsor_limits = artifacts["metadata"]["winsor_limits"]
+
+    df = pd.DataFrame(records)
+    if config.ID_COL not in df.columns:
+        df[config.ID_COL] = [f"REC_{i}" for i in range(len(df))]
+
+    df = data_processing.clean(df, is_train=False)
+    df = data_processing.apply_winsor_limits(df, winsor_limits)
+    df = feature_engineering.add_domain_features(df)
+    X, _ = data_processing.split_features_target(df)
+    if config.ID_COL in X.columns:
+        X = X.drop(columns=[config.ID_COL])
+
+    probs = model.predict_proba(X)[:, 1]
+    predictions = (probs >= threshold).astype(int)
+
+    results = []
+    for prob, pred in zip(probs, predictions):
+        p_float = round(float(prob), 4)
+        results.append({
+            "probability_of_default": p_float,
+            "predicted_class": int(pred),
+            "predicted_label": "INADIMPLENTE" if pred == 1 else "ADIMPLENTE",
+            "decision_threshold_used": threshold,
+            "risk_tier": risk_tier(p_float),
+        })
+    return results
 
 
 def get_model_info() -> dict[str, Any]:
